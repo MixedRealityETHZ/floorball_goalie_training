@@ -1,8 +1,10 @@
-using System:
+using System;
 
-// I have no idea what to do ._.
-public class ProjectionSystem {
-    void Start() {
-
+namespace projectionsystem {
+    class Projection {
+        static void Main(string[] args) {
+            
+            
+        }
     }
 }
