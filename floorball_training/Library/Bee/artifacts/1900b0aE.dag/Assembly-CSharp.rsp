@@ -352,9 +352,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/ball.cs"
-"Assets/Scripts/goal.cs"
-"Assets/Scripts/projection.cs"
+"Assets/Scripts/Ball.cs"
+"Assets/Scripts/BallSpawner.cs"
+"Assets/Scripts/Goal.cs"
+"Assets/Scripts/GoalSpawner.cs"
+"Assets/Scripts/Projection.cs"
+"Assets/Scripts/ProjectionSpawner.cs"
 -langversion:9.0
 
 /deterministic
