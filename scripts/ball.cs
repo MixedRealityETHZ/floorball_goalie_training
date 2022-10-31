@@ -1,12 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-/*
-I (Matthias) will be working on this system a little bit as a refresher on OOP 
-and because I've already written out all of the maths
-*/
+// GameObject Ball class
 
-public class ProjectionSystem : MonoBehaviour {
+public class Ball : GameObject {
 
     // Use this for initialization
     void Start () {
