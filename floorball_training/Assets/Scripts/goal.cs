@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour {
 
-    public static Vector3 center_position;
-    public static Quaternion orientation;
-    public static Vector3[] corner_positions;
-    public static bool was_seen = false;
+    public Vector3 center_position;
+    public Quaternion orientation;
+    public Vector3[] corner_positions;
+    public bool was_seen = true;
 
-    public Goal(Vector3[] corner_positions, int[] corner_ids) {
+    public Goal(Vector3[] corner_positions) {
         /*
          * Goal constructor that takes in the corner positions as seen
          * from the Hololens and calculates the goal center position and angle

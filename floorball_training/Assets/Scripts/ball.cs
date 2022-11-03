@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
 
-    public static Vector3 position;
-    public static bool is_seen = true;
+    public Vector3 position;
+    public bool is_seen = true;
 
     // Use this for initialization
     void Start () {
         // hard coded ball position
-        position = new Vector3(0.0f, -10.0f, 3.0f);
+        position = new Vector3(0.0f, 10.0f, 0.0f);
 
         gameObject.GetComponent<Renderer>().material.color = new Color(255, 0, 0); // make the ball red
     }
