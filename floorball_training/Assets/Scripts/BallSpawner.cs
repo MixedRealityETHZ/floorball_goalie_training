@@ -12,6 +12,8 @@ public class BallSpawner : MonoBehaviour {
     GameObject ball;
     public GameObject spawned_ball;
     public static bool ball_has_spawned;
+
+    private float delt;
     
     private void SpawnBall(Vector3 pos)
     {
@@ -29,6 +31,7 @@ public class BallSpawner : MonoBehaviour {
     void Start()
     {
         ball_has_spawned = false;
+        delt = 0.0f;
     }
 
     // Update is called once per frame
@@ -41,11 +44,13 @@ public class BallSpawner : MonoBehaviour {
             // Vector3 position = C++ script finding position
 
             // hard coded ball position
-            SpawnBall(new Vector3(1.0f, 0.0f, -3.0f));
+            SpawnBall(new Vector3(3.0f, 0.0f, -3.0f));
         }
         else if (GoalSpawner.goal_has_spawned)
         {
+            ball.transform.position = ball.transform.position - new Vector3(delt, 0.0f, 0.0f);
             ball.transform.LookAt(GameObject.Find("floorball_goal").transform.position);
+            delt += 0.00001f;
         }
     }
 }

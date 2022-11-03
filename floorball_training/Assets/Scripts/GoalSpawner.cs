@@ -34,7 +34,7 @@ public class GoalSpawner : MonoBehaviour {
         corner_positions[0] = center_position + new Vector3(1.6f / 2.0f, 1.15f / 2.0f, 0.6f / 2.0f);
         corner_positions[1] = center_position + new Vector3(-1.6f / 2.0f, 1.15f / 2.0f, 0.6f / 2.0f);
         corner_positions[2] = center_position + new Vector3(-1.6f / 2.0f, -1.15f / 2.0f, 0.6f / 2.0f);
-        corner_positions[3] = center_position + new Vector3(-1.6f / 2.0f, -1.15f / 2.0f, 0.6f / 2.0f);
+        corner_positions[3] = center_position + new Vector3(1.6f / 2.0f, -1.15f / 2.0f, 0.6f / 2.0f);
     }
 
     // Update is called once per frame
