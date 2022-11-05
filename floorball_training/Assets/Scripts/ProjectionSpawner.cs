@@ -5,15 +5,21 @@ using UnityEngine;
 public class ProjectionSpawner : MonoBehaviour
 {
     GameObject floorball_ball;
+    // these are all *kinda* redudant (but not really currently)
     GameObject proj;
     GameObject plane;
+    GameObject quad;
+
     LineRenderer[] lines = new LineRenderer[4];
     Ray[] rays = new Ray[4];
+
     Mesh mesh;
     Mesh plane_mesh;
+    Mesh quad_mesh;
 
     public GameObject spawned_proj;
     public GameObject spawned_plane;
+    public GameObject spawned_quad;
 
     private Quaternion orientation;
     private Vector3 pos;
@@ -32,9 +38,16 @@ public class ProjectionSpawner : MonoBehaviour
 
         mesh = proj.GetComponent<MeshFilter>().mesh;
 
+        // plane GameObject -> can probably remove
         plane = Instantiate(spawned_plane, pos, orientation) as GameObject;
-        //plane.GetComponent<Renderer>().enabled = false;
+        plane.GetComponent<Renderer>().enabled = false; // makes the larger plane invisible
+
         plane_mesh = plane.GetComponent<MeshFilter>().mesh;
+
+        quad = Instantiate(spawned_quad, pos, orientation) as GameObject;
+        quad.GetComponent<Renderer>().material.color = Color.yellow;
+
+        quad_mesh = quad.GetComponent<MeshFilter>().mesh;
     }
 
     // Start is called before the first frame update
@@ -46,6 +59,7 @@ public class ProjectionSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (ball_has_spawned && !proj_has_spawned)
         {
             floorball_ball = GameObject.Find("floorball_ball");
@@ -67,6 +81,7 @@ public class ProjectionSpawner : MonoBehaviour
                 lines[i].positionCount = 2;
                 lines[i].useWorldSpace = true;
 
+                // rays: mathematical lines
                 rays[i] = new Ray(floorball_ball.transform.position, (GoalSpawner.corner_positions[i] - floorball_ball.transform.position).normalized);
 
                 //For drawing line in the world space, provide the x,y,z values
@@ -76,6 +91,11 @@ public class ProjectionSpawner : MonoBehaviour
         }
         else if (ball_has_spawned)
         {
+            /*Debug.Log(quad_mesh.vertices[0]);
+            Debug.Log(quad_mesh.vertices[1]);
+            Debug.Log(quad_mesh.vertices[2]);
+            Debug.Log(quad_mesh.vertices[3]);*/
+
             updateProjPos(false);
 
             for (int i = 0; i<4; i++)
@@ -83,35 +103,39 @@ public class ProjectionSpawner : MonoBehaviour
                 renderLine(floorball_ball.transform.position, GoalSpawner.corner_positions[i], i);
                 // Uncomment to view the problems caused by trying to update the plane (or cube if you want) corner positions
                 // Summary of issue: the mesh is not 4 corners, it's n points for... some reason
-                // calcVertexPos(i);
+                Vector3 dist_cc = -floorball_ball.transform.position + GoalSpawner.center_position;
+                calcVertexPos(i, dist_cc.normalized);
             }
         }
         ball_has_spawned = BallSpawner.ball_has_spawned;
     }
 
+    // **TODO**
     // find where the spawned_plane (plane) intersects with all of the lines
-    public void calcVertexPos(int i)
+    // and set the vertices of some square mesh object to those points
+    public void calcVertexPos(int i, Vector3 norm)
     {
-        Vector3[] vertices = plane_mesh.vertices;
+        Vector3[] vertices = quad_mesh.vertices;
+        Vector3[] plane_vertices = plane_mesh.vertices;
+        //Debug.Log(quad_mesh.vertices);
 
-        var filter = plane.GetComponent<MeshFilter>();
-        Vector3 normal = new Vector3(0, 0, 0);
+        /*Debug.Log(plane_vertices[0]);
+        Debug.Log(plane_vertices[10]);
+        Debug.Log(plane_vertices[110]);*/
 
-        if (filter && filter.mesh.normals.Length > 0)
-            normal = filter.transform.TransformDirection(filter.mesh.normals[0]);
-
-        var temp_plane = new Plane(normal, transform.position);
+        // Plane struct (not GameObject): purely mathematical to get intersection positions w/ rays
+        Plane temp_plane = new Plane(norm, plane_vertices[10]);   
 
         float enter = 0.0f;
-        if (temp_plane.Raycast(rays[i], out enter))
+
+        // Debug.Log(temp_plane);
+
+        if (temp_plane.Raycast(rays[i], out enter)) // not entering here?
         {
             Vector3 hit_point = rays[i].GetPoint(enter);
-            if (i == 0) vertices[0] = hit_point;
-            if (i == 1) vertices[10] = hit_point;
-            if (i == 2) vertices[110] = hit_point;
-            if (i == 3) vertices[120] = hit_point;
+            vertices[i] = hit_point;
         }
-        plane_mesh.vertices = vertices;
+        quad_mesh.vertices = vertices; // this code is correct
     }
 
     public void updateProjPos(bool to_spawn)
@@ -132,8 +156,10 @@ public class ProjectionSpawner : MonoBehaviour
         {
             proj.transform.position = pos;
             proj.transform.rotation = orientation;
-            //plane.transform.position = pos;
-            //plane.transform.rotation = orientation;
+            plane.transform.position = pos;
+            plane.transform.rotation = orientation;
+            //quad.transform.position = pos;
+            //quad.transform.rotation = orientation;
         }
     }
 
@@ -146,5 +172,8 @@ public class ProjectionSpawner : MonoBehaviour
 
         rays[i].origin = ball_pos;
         rays[i].direction = (corner_pos - ball_pos).normalized;
+
+        // Draw rays in (Unity Debug Mode in Scene view)
+        // Debug.DrawRay(ball_pos, (corner_pos - ball_pos).normalized * 100f, Color.red, duration: 1.0f / 30.0f);
     }
 }

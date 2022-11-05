@@ -48,9 +48,10 @@ public class BallSpawner : MonoBehaviour {
         }
         else if (GoalSpawner.goal_has_spawned)
         {
+            // move the ball to see if the projection / lines change
             ball.transform.position = ball.transform.position - new Vector3(delt, 0.0f, 0.0f);
             ball.transform.LookAt(GameObject.Find("floorball_goal").transform.position);
-            delt += 0.00001f;
+            delt += 0.0001f;
         }
     }
 }

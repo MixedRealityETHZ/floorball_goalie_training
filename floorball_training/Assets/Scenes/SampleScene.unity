@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawned_proj: {fileID: 4551801055035439207, guid: 2af495a2619c33640a53f422c2ee1da0, type: 3}
   spawned_plane: {fileID: 8432455964526643246, guid: 0ceea09ed1576ee4790876b542400814, type: 3}
+  spawned_quad: {fileID: 7535962124922988340, guid: 63127100bc9c738499fa48db353f35e7, type: 3}
 --- !u!4 &732735061
 Transform:
   m_ObjectHideFlags: 0
