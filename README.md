@@ -2,7 +2,7 @@
 
 This mixed reality application's main goal is to provide additional visual cues for floorball goalkeepers in order to help them train and develop an intuitive understanding of how the ball could hit the goal. Important features of the app include automatic goal alignment via ArUco markers as well as ball tracking and the display of a projection plane conveying the information of the area the goalkeeper has to cover in order to protect the goal in the most intuitive way.
 
-## GitHub repository
+## GitHub repository and other project files
 This repository contains our main scripts (in the folder scripts). For the entire project, refer to [Polybox](https://polybox.ethz.ch/index.php/s/YaRIYX1tQxN0eHT) instead, where you can download all the Unity files. We avoided uploading the entire project on here, as it took up too much space in the past.
 
 ## Report
