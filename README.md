@@ -9,4 +9,4 @@ This repository contains our main scripts. For the entire project, refer to PUT 
 For further technical details, refer to the report on PUT IN LINK
 
 ## Demo
-The demo presentation can be found under PUT IN LINK. A more detailed video, also including some improvements that have been made since the demo session (most notably increasing the framerate from about 6 to 15)
+The demo presentation can be found under PUT IN LINK. A more detailed video, also including some improvements that have been made since the demo session (most notably increasing the framerate from about 6 to 15) can be found under PUT IN LINK and has also been submitted
