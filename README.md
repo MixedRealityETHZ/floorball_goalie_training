@@ -9,4 +9,4 @@ This repository contains our main scripts (in the folder scripts). For the entir
 For further technical details, refer to the report.
 
 ## Demo
-The demo presentation can also be found on [Polybox](https://polybox.ethz.ch/index.php/s/2eE2kAFLVHstTKe). A more detailed video, also including some improvements that have been made since the demo session (most notably increasing the framerate from about 6 to 15) can be found under PUT IN LINK and has also been submitted
+The demo presentation slides, including videos, can also be found on [Polybox](https://polybox.ethz.ch/index.php/s/2eE2kAFLVHstTKe). A more detailed video, also including some improvements that have been made since the demo session (most notably increasing the framerate from about 6 to 15) can be found under PUT IN LINK and has also been submitted
